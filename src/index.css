@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-page text-ink font-sans antialiased;
+  }
+
+  .dark body {
+    @apply bg-night-page text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-night-page;
+  }
+}
+
+@layer components {
+  /* Shared card shell used by every panel in the dashboard. */
+  .panel {
+    @apply rounded-card border border-surface-line bg-white shadow-card
+           dark:border-night-line dark:bg-night-card dark:shadow-none;
+  }
+
+  /* Shared form field styling for all inputs across the app. */
+  .field {
+    @apply w-full rounded-lg border border-surface-line bg-white px-4 py-3 text-sm text-ink
+           placeholder:text-ink-light focus:border-primary focus:outline-none
+           dark:border-night-line dark:bg-night-soft dark:text-white dark:placeholder:text-ink-light;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3
+           text-sm font-bold text-white transition-colors hover:bg-primary-dark;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-surface-line
+           px-4 py-2 text-sm font-semibold text-ink-muted transition-colors hover:border-primary
+           hover:text-primary dark:border-night-line dark:text-ink-light;
+  }
+}
+
+/* Thin scrollbars for the sidebar and horizontally scrolling tables. */
+.scroll-slim::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: #c8ccd4;
+  border-radius: 999px;
+}
+.dark .scroll-slim::-webkit-scrollbar-thumb {
+  background: #3d4a5c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
